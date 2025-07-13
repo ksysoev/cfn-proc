@@ -20,7 +20,7 @@ func InitCommand(build BuildInfo) cobra.Command {
 	}
 
 	cmd := cobra.Command{
-		Use:   "cnf-prov",
+		Use:   "cfn-proc",
 		Short: "",
 		Long:  "",
 		RunE: func(cmd *cobra.Command, _ []string) error {
