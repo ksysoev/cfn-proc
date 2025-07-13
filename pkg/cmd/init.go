@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
 )
 
@@ -15,8 +13,12 @@ type cmdArgs struct {
 	Out     string
 }
 
+// InitCommand initializes and returns a cobra.Command for CloudFormation pre-processing tasks.
+// It configures the command with build information and sets up necessary flags.
+// Accepts build that contains application version information.
+// Returns a fully configured cobra.Command instance.
 func InitCommand(build BuildInfo) cobra.Command {
-	args := &cmdArgs{
+	args := cmdArgs{
 		Version: build.Version,
 	}
 
@@ -25,7 +27,7 @@ func InitCommand(build BuildInfo) cobra.Command {
 		Short: "CloudFormation pre-processor",
 		Long:  "cfn-proc is a tool for processing CloudFormation templates, allowing for custom pre-processing steps before deployment.",
 		RunE: func(cmd *cobra.Command, sargs []string) error {
-			return runProcessor(cmd, args, sargs)
+			return runProcessor(cmd.Context(), args, sargs)
 		},
 	}
 

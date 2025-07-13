@@ -26,7 +26,7 @@ func New(inpath, outpath string) (*Processor, error) {
 // Process is a placeholder for the actual processing logic.
 // It currently returns an error indicating that the method is not implemented.
 func (p *Processor) Process() error {
-	inFile, err := os.OpenFile(p.inpath, os.O_RDONLY, 0644)
+	inFile, err := os.OpenFile(p.inpath, os.O_RDONLY, 0o644)
 	if err != nil {
 		return fmt.Errorf("failed to open input file %s: %w", p.inpath, err)
 	}
@@ -39,7 +39,7 @@ func (p *Processor) Process() error {
 		return fmt.Errorf("failed to decode input file %s: %w", p.inpath, err)
 	}
 
-	outFile, err := os.OpenFile(p.outpath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
+	outFile, err := os.OpenFile(p.outpath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0o644)
 	if err != nil {
 		return fmt.Errorf("failed to open output file %s: %w", p.outpath, err)
 	}
